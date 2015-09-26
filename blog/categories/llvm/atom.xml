@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Llvm | YZ's Blog]]></title>
+  <link href="http://benquike.github.io/blog/categories/llvm/atom.xml" rel="self"/>
+  <link href="http://benquike.github.io/"/>
+  <updated>2015-09-26T00:19:49-04:00</updated>
+  <id>http://benquike.github.io/</id>
+  <author>
+    <name><![CDATA[Yuzhong Peng]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Installing LLVM]]></title>
+    <link href="http://benquike.github.io/blog/2015/09/25/installing-llvm/"/>
+    <updated>2015-09-25T23:36:09-04:00</updated>
+    <id>http://benquike.github.io/blog/2015/09/25/installing-llvm</id>
+    <content type="html"><![CDATA[<h1>Installing prerequisite</h1>
+
+<pre><code class="bash">$ sudo apt-get install build-essential m4 libtool zlib1g-dev cmake make python zlib1g-dev
+$ sudo apt-get install clang
+</code></pre>
+
+<h1>Getting the source</h1>
+
+<p>Choose a directory to store the source code of LLVM, let&rsquo;s call it <code>$LLVM_SRC_ROOT</code>
+And we choose to download the following compnents:</p>
+
+<ul>
+<li>LLVM</li>
+<li>Clang</li>
+<li>compiler-rt</li>
+<li>libcxx</li>
+<li>libcxxabi</li>
+<li>test-suite</li>
+</ul>
+
+
+<h2>Getting the source of LLVM by SVN</h2>
+
+<pre><code class="bash">$ cd $LLVM_SRC_ROOT
+$ svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm
+$ cd llvm/tools
+$ svn co http://llvm.org/svn/llvm-project/cfe/trunk clang
+$ cd ../projects
+$ svn co http://llvm.org/svn/llvm-project/compiler-rt/trunk compiler-rt
+$ svn co http://llvm.org/svn/llvm-project/libcxx/trunk libcxx
+$ svn co http://llvm.org/svn/llvm-project/libcxxabi/trunk libcxxabi
+$ svn co http://llvm.org/svn/llvm-project/test-suite/trunk test-suite
+</code></pre>
+
+<h2>Getting the source of LLVM by Git</h2>
+
+<pre><code class="bash">$ cd $LLVM_SRC_ROOT
+$ git clone http://llvm.org/git/llvm.git
+$ cd llvm/tools
+$ git clone http://llvm.org/git/clang.git
+$ cd ../projects
+$ git clone http://llvm.org/git/compiler-rt.git
+$ git clone http://llvm.org/git/libcxx.git
+$ git clone http://llvm.org/git/libcxxabi.git
+$ git clone http://llvm.org/git/test-suite.git
+</code></pre>
+
+<h1>Configuring LLVM</h1>
+
+<h2>Configuring options</h2>
+
+<p>LLVM supports 2 tools for configuring it.  In this blog, we use cmake. For instructions
+on how to build llvm using autotools, please refer to the link.</p>
+
+<ul>
+<li>cmake</li>
+<li><a href="http://llvm.org/docs/BuildingLLVMWithAutotools.html">Building LLVM With Autotools</a></li>
+</ul>
+
+
+<h2>Configuring the host compiler</h2>
+
+<p>If we use cmake, /usr/bin/cc and /usr/bin/c++, which are parts of GCC, are used as C and C++ compiler.
+To use clang as compiler, we have to add the following configuration.</p>
+
+<pre><code class="bash">$ export CMAKE_C_COMPILER=clang
+$ export CMAKE_CXX_COMPILER=clang++
+</code></pre>
+
+<h2>Configuring the buid tool</h2>
+
+<p>Cmake is able to generate the project file for a lot of build tools or IDEs.
+We can specify it using -G option.</p>
+
+<p>Here we use the GNU Makefile.
+So we using the following options:
+<code>bash
+$ cmake -G "Unix Makefiles"
+</code></p>
+
+<h2>Configuring the install directory</h2>
+
+<p>We can add <code>-DCMAKE_INSTALL_PREFIX=DIR_TO_INSTALL</code> option to specify where we want to install llvm.</p>
+
+<h1>Building the source code</h1>
+
+<p>Assuming that the directory you want to build the source code is called <code>$LLVM_OBJ_DIR</code>.
+Goto there and use cmake to generate the makefile using the following command:
+<code>bash
+$ cd $LLVM_OBJ_DIR
+$ cmake -G "Unix Makefiles" -DCMAKE_INSTALL_PREFIX=DIR_TO_INSTALL -DCMAKE_BUILD_TYPE=Debug -DLLVM_ENABLE_ASSERTIONS=On $LLVM_SRC_ROOT
+</code></p>
+
+<p>Then start building llvm by issuing make command
+<code>bash
+$ make
+$ make install
+</code></p>
+]]></content>
+  </entry>
+  
+</feed>

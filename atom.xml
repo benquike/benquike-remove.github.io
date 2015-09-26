@@ -4,7 +4,7 @@
   <title><![CDATA[YZ's Blog]]></title>
   <link href="http://benquike.github.io/atom.xml" rel="self"/>
   <link href="http://benquike.github.io/"/>
-  <updated>2015-09-25T23:23:35-04:00</updated>
+  <updated>2015-09-26T00:19:49-04:00</updated>
   <id>http://benquike.github.io/</id>
   <author>
     <name><![CDATA[Yuzhong Peng]]></name>
@@ -12,6 +12,148 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Installing LLVM]]></title>
+    <link href="http://benquike.github.io/blog/2015/09/25/installing-llvm/"/>
+    <updated>2015-09-25T23:36:09-04:00</updated>
+    <id>http://benquike.github.io/blog/2015/09/25/installing-llvm</id>
+    <content type="html"><![CDATA[<h1>Installing prerequisite</h1>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>sudo apt-get install build-essential m4 libtool zlib1g-dev cmake make python zlib1g-dev
+</span><span class='line'><span class="nv">$ </span>sudo apt-get install clang
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Getting the source</h1>
+
+<p>Choose a directory to store the source code of LLVM, let&rsquo;s call it <code>$LLVM_SRC_ROOT</code>
+And we choose to download the following compnents:</p>
+
+<ul>
+<li>LLVM</li>
+<li>Clang</li>
+<li>compiler-rt</li>
+<li>libcxx</li>
+<li>libcxxabi</li>
+<li>test-suite</li>
+</ul>
+
+
+<h2>Getting the source of LLVM by SVN</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$LLVM_SRC_ROOT</span>
+</span><span class='line'><span class="nv">$ </span>svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>llvm/tools
+</span><span class='line'><span class="nv">$ </span>svn co http://llvm.org/svn/llvm-project/cfe/trunk clang
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd</span> ../projects
+</span><span class='line'><span class="nv">$ </span>svn co http://llvm.org/svn/llvm-project/compiler-rt/trunk compiler-rt
+</span><span class='line'><span class="nv">$ </span>svn co http://llvm.org/svn/llvm-project/libcxx/trunk libcxx
+</span><span class='line'><span class="nv">$ </span>svn co http://llvm.org/svn/llvm-project/libcxxabi/trunk libcxxabi
+</span><span class='line'><span class="nv">$ </span>svn co http://llvm.org/svn/llvm-project/test-suite/trunk <span class="nb">test</span>-suite
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Getting the source of LLVM by Git</h2>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$LLVM_SRC_ROOT</span>
+</span><span class='line'><span class="nv">$ </span>git clone http://llvm.org/git/llvm.git
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd </span>llvm/tools
+</span><span class='line'><span class="nv">$ </span>git clone http://llvm.org/git/clang.git
+</span><span class='line'><span class="nv">$ </span><span class="nb">cd</span> ../projects
+</span><span class='line'><span class="nv">$ </span>git clone http://llvm.org/git/compiler-rt.git
+</span><span class='line'><span class="nv">$ </span>git clone http://llvm.org/git/libcxx.git
+</span><span class='line'><span class="nv">$ </span>git clone http://llvm.org/git/libcxxabi.git
+</span><span class='line'><span class="nv">$ </span>git clone http://llvm.org/git/test-suite.git
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h1>Configuring LLVM</h1>
+
+<h2>Configuring options</h2>
+
+<p>LLVM supports 2 tools for configuring it.  In this blog, we use cmake. For instructions
+on how to build llvm using autotools, please refer to the link.</p>
+
+<ul>
+<li>cmake</li>
+<li><a href="http://llvm.org/docs/BuildingLLVMWithAutotools.html">Building LLVM With Autotools</a></li>
+</ul>
+
+
+<h2>Configuring the host compiler</h2>
+
+<p>If we use cmake, /usr/bin/cc and /usr/bin/c++, which are parts of GCC, are used as C and C++ compiler.
+To use clang as compiler, we have to add the following configuration.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">export </span><span class="nv">CMAKE_C_COMPILER</span><span class="o">=</span>clang
+</span><span class='line'><span class="nv">$ </span><span class="nb">export </span><span class="nv">CMAKE_CXX_COMPILER</span><span class="o">=</span>clang++
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Configuring the buid tool</h2>
+
+<p>Cmake is able to generate the project file for a lot of build tools or IDEs.
+We can specify it using -G option.</p>
+
+<p>Here we use the GNU Makefile.
+So we using the following options:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>cmake -G <span class="s2">&quot;Unix Makefiles&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Configuring the install directory</h2>
+
+<p>We can add <code>-DCMAKE_INSTALL_PREFIX=DIR_TO_INSTALL</code> option to specify where we want to install llvm.</p>
+
+<h1>Building the source code</h1>
+
+<p>Assuming that the directory you want to build the source code is called <code>$LLVM_OBJ_DIR</code>.
+Goto there and use cmake to generate the makefile using the following command:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span><span class="nb">cd</span> <span class="nv">$LLVM_OBJ_DIR</span>
+</span><span class='line'><span class="nv">$ </span>cmake -G <span class="s2">&quot;Unix Makefiles&quot;</span> -DCMAKE_INSTALL_PREFIX<span class="o">=</span>DIR_TO_INSTALL -DCMAKE_BUILD_TYPE<span class="o">=</span>Debug -DLLVM_ENABLE_ASSERTIONS<span class="o">=</span>On <span class="nv">$LLVM_SRC_ROOT</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then start building llvm by issuing make command</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'><span class="nv">$ </span>make
+</span><span class='line'><span class="nv">$ </span>make install
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Using Text Utilities to Do Chores]]></title>
@@ -31,6 +173,10 @@
 <h2>Share variable between shell and awk script</h2>
 
 <h2>Use variable in awk script</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>gawk 'BEGIN{num=1}{print "\t{"$1", "$2 + 1", "$3+1", 40, "$5+1"},\t/* "num++" */"}' inputfile</span></code></pre></td></tr></table></div></figure>
+
 
 <h1>SED</h1>
 
