@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://benquike.github.io/</loc>
+    <loc>http://benquike.github.io/blog/2015/07/02/using-text-utilities-to-do-chores/</loc>
+    <lastmod>2015-07-02T12:45:42-04:00</lastmod>
   </url>
   <url>
     <loc>http://benquike.github.io/blog/archives/</loc>
+  </url>
+  <url>
+    <loc>http://benquike.github.io/</loc>
   </url>
 </urlset>

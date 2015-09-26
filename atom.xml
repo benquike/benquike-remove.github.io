@@ -4,7 +4,7 @@
   <title><![CDATA[YZ's Blog]]></title>
   <link href="http://benquike.github.io/atom.xml" rel="self"/>
   <link href="http://benquike.github.io/"/>
-  <updated>2015-07-03T01:12:19+09:00</updated>
+  <updated>2015-09-25T23:23:35-04:00</updated>
   <id>http://benquike.github.io/</id>
   <author>
     <name><![CDATA[Yuzhong Peng]]></name>
@@ -12,5 +12,53 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Using Text Utilities to Do Chores]]></title>
+    <link href="http://benquike.github.io/blog/2015/07/02/using-text-utilities-to-do-chores/"/>
+    <updated>2015-07-02T12:45:42-04:00</updated>
+    <id>http://benquike.github.io/blog/2015/07/02/using-text-utilities-to-do-chores</id>
+    <content type="html"><![CDATA[<h1>Emacs</h1>
+
+<p>There are a lot of high efficient edit functionalities incuded in Emacs. This section list some of them.</p>
+
+<h2>Keyboard macro</h2>
+
+<h2>Applying a keyboard macro to a region</h2>
+
+<h1>AWK</h1>
+
+<h2>Share variable between shell and awk script</h2>
+
+<h2>Use variable in awk script</h2>
+
+<h1>SED</h1>
+
+<h2>Usage</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ sed 'RANGE ACTION' file(s)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Using this command, we can execute some <strong>non-interactive batch</strong> edit specified by <code>ACTION</code> on lines specified by
+<code>RANGE</code> of file(or you may specify more than one file by wildcard of bash).</p>
+
+<h3>RANGE</h3>
+
+<h2>Examples</h2>
+
+<ol>
+<li><p>Merge two lines into one line</p></li>
+<li></li>
+</ol>
+
+
+<h1>Bash array and string handling</h1>
+
+<h2>Array</h2>
+
+<h2>String</h2>
+]]></content>
+  </entry>
   
 </feed>
