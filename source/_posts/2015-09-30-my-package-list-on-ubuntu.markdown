@@ -13,8 +13,15 @@ categories:
 * sublime-text
 
 # libraries
+## security
 * openssl
+
+## Graphics
 * libgtk
+
+## Developing
+* cpputest
+* test coverage analysis
 
 # typesetting
 * texlive
@@ -45,4 +52,35 @@ shutter
 dia graphviz
 llvm clang
 cmake automake
+cpputest lcov genhtml
+gnuplot
+expect
+tilda guake terminator
+valgrind
+nasm
+boost
+astyle
+r2
+execstack
+pandas
 ```
+
+
+# Reference
+## Important tools
+1. [Automation with Expect Scripts](http://www.admin-magazine.com/Articles/Automating-with-Expect-Scripts)
+
+## terminal emulators
+1. [Tilda](https://github.com/lanoxx/tilda)
+
+## Program analysis
+1. [Using Valgrind to Find Memory Leaks and Invalid Memory Use](http://www.cprogramming.com/debugging/valgrind.html)
+2. [Using Valgrind](http://web.cs.swarthmore.edu/~newhall/unixhelp/purify.html)
+3. [Valgrind](http://pages.cs.wisc.edu/~bart/537/valgrind.html)
+4. [Valgrind tool explained](http://cs.ecs.baylor.edu/~donahoo/tools/valgrind/)
+
+## Privacy and security related
+1. [PGP](http://cs.ecs.baylor.edu/~donahoo/tools/PGP/)
+
+## source code formatter
+1. [Artistic Style](http://astyle.sourceforge.net/astyle.html#_General_Information)
